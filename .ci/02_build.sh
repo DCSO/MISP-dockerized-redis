@@ -45,7 +45,7 @@ fi
 
 GIT_REPO_URL="https://github.com/$GIT_REPO"
 # Dockerifle Settings
-CONTAINER_NAME="$(echo $GIT_REPO|cut -d / -f 2|tr '[:upper:]' '[:lower:]')"
+CONTAINER_NAME="$(echo "$GIT_REPO"|cut -d / -f 2|tr '[:upper:]' '[:lower:]')"
 DOCKER_REPO="not2push/$CONTAINER_NAME"
 #########################################################
 
@@ -77,8 +77,8 @@ do
     "
     # build image
     docker build \
-            "$BUILD_ARGS" \
-        -f $DOCKERFILE_PATH/$DOCKERFILE_NAME $TAGS $DOCKERFILE_PATH/
+            $BUILD_ARGS \
+        -f "$DOCKERFILE_PATH/$DOCKERFILE_NAME" $TAGS "$DOCKERFILE_PATH"/
 done
 
 echo "$STARTMSG $0 is finished."
