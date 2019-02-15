@@ -78,7 +78,7 @@ do
     # build image
     docker build \
             "$BUILD_ARGS" \
-        -f "$DOCKERFILE_PATH/$DOCKERFILE_NAME" $TAGS "$DOCKERFILE_PATH"/
+        -f $DOCKERFILE_PATH/$DOCKERFILE_NAME $TAGS $DOCKERFILE_PATH/
 done
 
 echo "$STARTMSG $0 is finished."
