@@ -1,0 +1,30 @@
+dist: xenial
+addons:
+  apt:
+    sources:
+      - docker-xenial
+
+env:
+  global:
+  # The following variables are setup via gitlab project group:
+  # - DOCKER_HUB_TOKEN
+  # - DOCKER_SLUG
+  # - DOCKER_USERNAME
+  # - DOCKER_PASSWORD
+  # - CUSTOM_REGISTRY_URL
+  # - CUSTOM_REGISTRY_USER
+  # - CUSTOM_REGISTRY_PWs
+  matrix:
+  - VERSION=1.0-alpine
+
+
+before_install:
+- sudo .ci/01_before_install.sh
+
+script:
+- make -C .ci  build v=${VERSION}
+- make -C .ci  tags REPOURL=$DOCKER_SLUG # tagged dcso/CONTAINERNAME + custom-URL/CONTAINERNAME
+
+# don't notify me when things fail
+notifications:
+  email: false
