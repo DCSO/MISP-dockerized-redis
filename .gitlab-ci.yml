@@ -11,6 +11,7 @@ variables:
   COMPONENT: redis
 
 .build:
+  only:
   - feat/MDD-221
 
 include:
