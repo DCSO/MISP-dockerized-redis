@@ -1,9 +1,4 @@
 
-stages:
-- lint
-- build
-- notify
-
 notify:
   extends: .notify
 
