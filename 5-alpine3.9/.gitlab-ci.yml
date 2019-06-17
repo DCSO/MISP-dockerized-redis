@@ -4,10 +4,10 @@ variables:
     TAGS: "${FOLDER}-dev"
     RELEASE_DATE: 2019-04
 
-build 2.4.88-ubuntu:
+build 5-alpine3.9:
   extends: .build
 
-test 2.4.88-ubuntu:
+test 5-alpine3.9:
   extends: .test
   only:
     changes:
