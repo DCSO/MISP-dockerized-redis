@@ -1,0 +1,15 @@
+variables:
+    FOLDER: "5-alpine3.9"
+    VERSION: "5-alpine3.9"
+    TAGS: "${FOLDER}-dev"
+    RELEASE_DATE: 2019-04
+
+build 2.4.88-ubuntu:
+  extends: .build
+
+test 2.4.88-ubuntu:
+  extends: .test
+  only:
+    changes:
+    - 5-alpine3.9/*
+    
