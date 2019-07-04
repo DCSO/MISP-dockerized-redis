@@ -1,8 +1,8 @@
 variables:
-    FOLDER: "5-alpine3.9"
-    VERSION: "5-alpine3.9"
-    TAGS: "${FOLDER}-dev"
-    RELEASE_DATE: 2019-04
+  FOLDER: "5-alpine3.9"
+  VERSION: "${FOLDER}"
+  TAGS: "${FOLDER}-dev latest-dev"
+  RELEASE_DATE: 2019-04
 
 build 5-alpine3.9:
   extends: .build
