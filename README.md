@@ -6,8 +6,6 @@ For this Container please look at https://dcso.github.io/MISP-dockerized-docs/co
 
 See https://dcso.github.io/MISP-dockerized-docs/ for more documentation.
 
-
-
 # License
 
 View [license information](https://github.com/DCSO/MISP-dockerized-redis/blob/master/LICENSE) for the software contained in this image.

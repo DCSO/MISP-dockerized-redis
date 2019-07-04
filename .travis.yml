@@ -7,29 +7,22 @@ addons:
 
 env:
   global:
-  # The following variables are setup via gitlab project group:
-  # - DOCKER_HUB_TOKEN
-  # - DOCKER_SLUG
-  # - DOCKER_USERNAME
-  # - DOCKER_PASSWORD
-  # - CUSTOM_REGISTRY_URL
-  # - CUSTOM_REGISTRY_USER
-  # - CUSTOM_REGISTRY_PWs
+  #- DOCKER_COMPOSE_VERSION=1.4.2
+  - COMPONENT=redis
+
   matrix:
-  - VERSION=5-alpine3.9
-
-
-before_install:
-- sudo .ci/01_before_install.sh
+  - FOLDER=5-alpine3.9
 
 script:
-# Download Images
-- docker pull library/redis:$VERSION
-# Retag
-- docker tag redis:$VERSION $CUSTOM_REGISTRY_URL/misp-dockerized-redis:$VERSION
-- docker tag redis:$VERSION $DOCKER_SLUG/misp-dockerized-redis:$VERSION
-- docker images|grep redis
-  
-# don't notify me when things fail
-notifications:
-  email: false
+- docker build -f "$TRAVIS_BUILD_DIR/$FOLDER/Dockerfile" 
+                      --build-arg VCS_REF="$TRAVIS_COMMIT" 
+                      --build-arg VERSION="$FOLDER" 
+                      --build-arg GIT_REPO="https://github.com/$TRAVIS_REPO_SLUG" 
+                      --build-arg COMPONENT="$COMPONENT"
+                      --build-arg BUILD_DATE="$(date -u +"%Y-%m-%d")"
+                      "$TRAVIS_BUILD_DIR/$FOLDER"
+
+
+# # don't notify me when things fail
+# notifications:
+#   email: false
